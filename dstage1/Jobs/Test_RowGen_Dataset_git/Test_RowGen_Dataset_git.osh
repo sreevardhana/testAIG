@@ -1,0 +1,46 @@
+# OSH / orchestrate script for Job Test_RowGen_Dataset_git compiled at 12:21:43 04 NOV 2019
+#
+# OSH / orchestrate script for Job Test_RowGen_Dataset_git compiled at 12:21:40 04 Nov 2019
+#################################################################
+#### STAGE: Row_Generator_1
+## Operator
+generator
+## Operator options
+-schema record
+(
+col1:int32;
+col2:string[];
+col3:sfloat;
+)
+-records 1000
+## General options
+[ident('Row_Generator_1'); jobmon_ident('Row_Generator_1')]
+## Outputs
+0> [] 'Row_Generator_1:DSLink3.v'
+;
+#################################################################
+#### STAGE: Transformer_4
+## Operator
+transform
+## Operator options
+-flag run
+-name 'V0S4_Test_RowGen_Dataset_git_Transformer'
+## General options
+[ident('Transformer_4'); jobmon_ident('Transformer_4')]
+## Inputs
+0< [] 'Row_Generator_1:DSLink3.v'
+## Outputs
+0> [] 'Transformer_4:DSLink5.v'
+;
+###############################################################
+#### STAGE: Data_Set_6
+## Operator
+copy
+## General options
+[ident('Data_Set_6')]
+## Inputs
+0< [] 'Transformer_4:DSLink5.v'
+## Outputs
+0>| [ds]'/dataset1/ds/git1.ds'
+;
+# End of OSH code
