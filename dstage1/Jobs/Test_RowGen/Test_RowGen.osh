@@ -1,0 +1,33 @@
+# OSH / orchestrate script for Job Test_RowGen compiled at 07:45:58 13 NOV 2019
+#
+# OSH / orchestrate script for Job Test_RowGen compiled at 07:45:55 13 Nov 2019
+#################################################################
+#### STAGE: Row_Generator_1
+## Operator
+generator
+## Operator options
+-schema record
+(
+col1:int32;
+col2:string[];
+col3:sfloat;
+)
+-records 10
+## General options
+[ident('Row_Generator_1'); jobmon_ident('Row_Generator_1')]
+## Outputs
+0> [] 'Row_Generator_1:DSLink3.v'
+;
+#################################################################
+#### STAGE: Peek_2
+## Operator
+peek
+## Operator options
+-nrecs 10
+-name
+## General options
+[ident('Peek_2'); jobmon_ident('Peek_2')]
+## Inputs
+0< [] 'Row_Generator_1:DSLink3.v'
+;
+# End of OSH code
