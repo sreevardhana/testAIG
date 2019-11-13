@@ -1,0 +1,47 @@
+# OSH / orchestrate script for Job Test_RowGen_2 compiled at 08:17:15 13 NOV 2019
+#
+# OSH / orchestrate script for Job Test_RowGen_2 compiled at 08:17:12 13 Nov 2019
+#################################################################
+#### STAGE: Row_Generator_1
+## Operator
+generator
+## Operator options
+-schema record
+(
+col1:int32;
+col2:string[];
+col3:sfloat;
+)
+-records 10
+## General options
+[ident('Row_Generator_1'); jobmon_ident('Row_Generator_1')]
+## Outputs
+0> [] 'Row_Generator_1:DSLink3.v'
+;
+#################################################################
+#### STAGE: Transformer_4
+## Operator
+transform
+## Operator options
+-flag run
+-name 'V0S4_Test_RowGen_2_Transformer'
+## General options
+[ident('Transformer_4'); jobmon_ident('Transformer_4')]
+## Inputs
+0< [] 'Row_Generator_1:DSLink3.v'
+## Outputs
+0> [] 'Transformer_4:DSLink5.v'
+;
+#################################################################
+#### STAGE: Peek_2
+## Operator
+peek
+## Operator options
+-nrecs 10
+-name
+## General options
+[ident('Peek_2'); jobmon_ident('Peek_2')]
+## Inputs
+0< [] 'Transformer_4:DSLink5.v'
+;
+# End of OSH code
